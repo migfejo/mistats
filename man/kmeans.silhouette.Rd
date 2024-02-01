@@ -7,17 +7,17 @@
 kmeans.silhouette(data, print.result = FALSE, print.plot = FALSE)
 }
 \arguments{
-\item{data}{`data.frame` with samples in rows and variables in columns.}
+\item{data}{\code{data.frame} with samples in rows and variables in columns.}
 
-\item{print.result}{Default = FALSE. If TRUE, the optimal number of clusters
+\item{print.result}{Default = \code{FALSE}. If \code{TRUE}, the optimal number of clusters
 and its Silhouette score is printed as a message in the R terminal.}
 
-\item{print.plot}{Default = FALSE. If TRUE, a simple scatter plot will be
+\item{print.plot}{Default = \code{FALSE}. If \code{TRUE}, a simple scatter plot will be
 generated showing the silhouette scores for each potential number of
 clusters.}
 }
 \value{
-`numeric` value. Number of optimal clusters.
+\code{numeric} value. Number of optimal clusters.
 }
 \description{
 This function performs Silhouette method in order to assess the

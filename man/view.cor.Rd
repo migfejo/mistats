@@ -7,18 +7,24 @@
 view.cor(vars1, vars2, threshold = 0.5, method = "pearson")
 }
 \arguments{
-\item{vars1}{`data.frame` with the first set of variables, in columns, to
-compare with the second set from `vars2`. Observations are in rows, and they
-must match in order with those in `vars2`.}
+\item{vars1}{\code{data.frame} with the first set of variables, in columns, to
+compare with the second set from \code{vars2}. Observations are in rows, and they
+must match in order with those in \code{vars2}.}
 
-\item{vars2}{`data.frame` with the second set of variables, in columns, to
-compare with the first set from `vars1`. Observations are in rows, and they
-must match in order with those in `vars1`.}
+\item{vars2}{\code{data.frame} with the second set of variables, in columns, to
+compare with the first set from \code{vars1}. Observations are in rows, and they
+must match in order with those in \code{vars1}.}
+
+\item{threshold}{Minimum threshold value for filtering correlation results.
+It applies to positive and negative correlations.}
+
+\item{method}{Correlation measure to assess. Options are the same as for
+\code{\link[stats]{cor}}. Default = \code{"pearson"}.}
 }
 \value{
-`numeric` vector with the results of the assessed correlations.
+\code{numeric} vector with the results of the assessed correlations.
 }
 \description{
 This function outputs the correlation results of multiple
-variables as a `numeric` vector, and can be filtered by a minimum threshold.
+variables as a \code{numeric} vector, and can be filtered by a minimum threshold.
 }

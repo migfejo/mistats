@@ -7,20 +7,20 @@
 multiple.anova(data, group.var, vars = colnames(data))
 }
 \arguments{
-\item{data}{data.frame containing the values of the variables for each
-sample. Values of the variables selected in `vars` must be `numeric`.}
+\item{data}{\code{data.frame} containing the values of the variables for each
+sample. Values of the variables selected in \code{vars} must be \code{numeric}.}
 
 \item{group.var}{Vector containing group identifiers. Its length must match
-with the number of `data` rows, and its elements must be in the same order.}
+with the number of \code{data} rows, and its elements must be in the same order.}
 
-\item{vars}{String vector containing the names of the variables
-(matching colnames(data)) to analyze. Values of the selected `vars` must be
-`numeric`.}
+\item{vars}{Default = \code{colnames(data)}. String vector containing the names of the variables
+(matching \code{colnames(data)}) to analyze. Values of the selected \code{vars} must be
+\code{numeric}.}
 }
 \value{
 Vector containing resulting p-values for each test for each variable.
 }
 \description{
 Perform ANOVA separately for each of the variables in a
-`data.frame`.
+\code{data.frame}.
 }
