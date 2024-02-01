@@ -1,0 +1,35 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# mistats
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of `mistats` is to provide shortcuts to some actions related to 
+statistical analysis. In principle, the development of this package is only for
+neatly wrapping some functions scripted by de author for himself, but the code
+is now free in GitHub for use by anyone, if it helps. 
+
+## Installation
+
+You can install the development and unique version of `mistats` from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("migfejo/mistats")
+```
+
+
