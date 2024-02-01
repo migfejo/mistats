@@ -9,7 +9,7 @@
 #' (matching \code{colnames(data)}) to analyze. Values of the selected \code{vars} must be
 #' \code{numeric}.
 #' @return Vector containing resulting p-values for each test for each variable.
-#' @export multiple.t.test
+#' @export multiple.anova
 #'
 multiple.anova <- function(data, group.var, vars = colnames(data)){
   df <- cbind(Group = factor(group.var), data)

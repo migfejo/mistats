@@ -11,7 +11,7 @@
 #' generated showing the silhouette scores for each potential number of
 #' clusters.
 #' @return \code{numeric} value. Number of optimal clusters.
-#' @export kmeans.silhouette
+#' @export pam.silhouette
 #'
 pam.silhouette <- function(data, distance = "bray", print.result = FALSE, print.plot = FALSE){
   scores <- c()
