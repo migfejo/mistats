@@ -1,21 +1,24 @@
-#' @title Filter and View Correlation Assessment
+#' Filter and View Correlation Assessment
+#'
 #' @description This function outputs the correlation results of multiple
 #' variables as a \code{numeric} vector, and can be filtered by a minimum threshold.
-#' @param vars1 \code{data.frame} with the first set of variables, in columns, to
-#' compare with the second set from \code{vars2}. Observations are in rows, and they
-#' must match in order with those in \code{vars2}.
-#' @param vars2 \code{data.frame} with the second set of variables, in columns, to
-#' compare with the first set from \code{vars1}. Observations are in rows, and they
-#' must match in order with those in \code{vars1}.
+#'
+#' @param x,y \code{data.frames} with the first and the second sets of variables,
+#' respectively, to be compared each other. Variables must be in columns.
+#' Observations must be in rows, and in the same order in both sets.
+#'
 #' @param threshold Minimum threshold value for filtering correlation results.
 #' It applies to positive and negative correlations.
+#'
 #' @param method Correlation measure to assess. Options are the same as for
 #' \code{\link[stats]{cor}}. Default = \code{"pearson"}.
+#'
 #' @return \code{numeric} vector with the results of the assessed correlations.
+#'
 #' @export view.cor
 #'
-view.cor <- function(vars1, vars2, threshold = 0.5, method = "pearson"){
-  corrs <- stats::cor(vars1, vars2, method = method)
+view.cor <- function(x, y, threshold = 0.5, method = "pearson"){
+  corrs <- stats::cor(x, y, method = method)
   indexes <- which(abs(corrs) >= threshold)
   res <- c()
   resnames <- c()

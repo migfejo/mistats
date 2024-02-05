@@ -4,16 +4,12 @@
 \alias{view.cor}
 \title{Filter and View Correlation Assessment}
 \usage{
-view.cor(vars1, vars2, threshold = 0.5, method = "pearson")
+view.cor(x, y, threshold = 0.5, method = "pearson")
 }
 \arguments{
-\item{vars1}{\code{data.frame} with the first set of variables, in columns, to
-compare with the second set from \code{vars2}. Observations are in rows, and they
-must match in order with those in \code{vars2}.}
-
-\item{vars2}{\code{data.frame} with the second set of variables, in columns, to
-compare with the first set from \code{vars1}. Observations are in rows, and they
-must match in order with those in \code{vars1}.}
+\item{x, y}{\code{data.frames} with the first and the second sets of variables,
+respectively, to be compared each other. Variables must be in columns.
+Observations must be in rows, and in the same order in both sets.}
 
 \item{threshold}{Minimum threshold value for filtering correlation results.
 It applies to positive and negative correlations.}
