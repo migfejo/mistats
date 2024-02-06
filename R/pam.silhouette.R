@@ -1,16 +1,25 @@
-#' @title Silhouette Method for Partitioning Around Medoids Clustering
+#' Silhouette Method for Partitioning Around Medoids Clustering
+#'
 #' @description This function performs Silhouette method in order to assess the
 #' optimal number of clusters for given data, when clustering by PAM algorithm.
+#'
 #' @param data \code{data.frame} with samples in rows and variables in columns.
+#'
 #' @param distance Default is \code{bray}, i.e., Bray-Curtis dissimilarity. It can
 #' be used any measure of distance or dissimilarity supported by the function
 #' \code{\link[vegan]{vegdist}}.
+#'
 #' @param print.result Default = \code{FALSE} If \code{TRUE}, the optimal number of clusters
 #' and its Silhouette score is printed as a message in the R terminal.
+#'
 #' @param print.plot Default = \code{FALSE} If \code{TRUE}, a simple scatter plot will be
 #' generated showing the silhouette scores for each potential number of
 #' clusters.
-#' @return \code{numeric} value. Number of optimal clusters.
+#'
+#' @return Number of optimal clusters.
+#'
+#' @import vegan
+#'
 #' @export pam.silhouette
 #'
 pam.silhouette <- function(data, distance = "bray", print.result = FALSE, print.plot = FALSE){

@@ -26,7 +26,7 @@ generated showing the silhouette scores for each potential number of
 clusters.}
 }
 \value{
-\code{numeric} value. Number of optimal clusters.
+Number of optimal clusters.
 }
 \description{
 This function performs Silhouette method in order to assess the
