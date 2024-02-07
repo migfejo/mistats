@@ -4,12 +4,14 @@
 \alias{presence.grouping}
 \title{Presence/Absence Grouping}
 \usage{
-presence.grouping(data, vars = colnames(data))
+presence.grouping(data, vars = colnames(data), lower.limit = 2)
 }
 \arguments{
 \item{data}{\code{data.frame} with samples in rows and variables in columns.}
 
 \item{vars}{Variables from \code{data} to be classified. All of them must be \code{numeric}.}
+
+\item{lower.limit}{Minimum number allowed of members in each group. Minimum for t test is 2.}
 }
 \value{
 A nested list. Each element (variable) contains a character vector
