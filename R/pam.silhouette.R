@@ -18,7 +18,7 @@
 #'
 #' @return Number of optimal clusters.
 #'
-#' @import vegan
+#' @importFrom vegan vegdist
 #'
 #' @export pam.silhouette
 #'

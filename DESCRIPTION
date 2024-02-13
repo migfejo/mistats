@@ -9,6 +9,7 @@ Description: A personal R Package for making easier working with R,
 License: MIT + file LICENSE
 Imports: 
     cluster,
+    NMF,
     stats,
     vegan
 Encoding: UTF-8

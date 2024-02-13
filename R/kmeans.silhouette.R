@@ -1,14 +1,22 @@
-#' @title Silhouette Method for K-means Clustering
+#' Silhouette Method for K-means Clustering
+#'
 #' @description This function performs Silhouette method in order to assess the
 #' optimal number of clusters for given data, when clustering by K-means
 #' algorithm.
+#'
 #' @param data \code{data.frame} with samples in rows and variables in columns.
+#'
 #' @param print.result Default = \code{FALSE}. If \code{TRUE}, the optimal number of clusters
 #' and its Silhouette score is printed as a message in the R terminal.
+#'
 #' @param print.plot Default = \code{FALSE}. If \code{TRUE}, a simple scatter plot will be
 #' generated showing the silhouette scores for each potential number of
 #' clusters.
+#'
 #' @return \code{numeric} value. Number of optimal clusters.
+#'
+#' @importFrom cluster silhouette
+#'
 #' @export kmeans.silhouette
 #'
 kmeans.silhouette <- function(data, print.result = FALSE, print.plot = FALSE){
