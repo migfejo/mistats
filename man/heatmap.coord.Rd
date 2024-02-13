@@ -4,7 +4,7 @@
 \alias{heatmap.coord}
 \title{Logical Dataframe Coordinates Heatmap}
 \usage{
-heatmap.coord(data, bool = NULL, mode = "isnot.na")
+heatmap.coord(data, bool = NULL, mode = "isnot.na", ...)
 }
 \arguments{
 \item{data}{\code{data.frame} in whose coordinates are being looking for.}
@@ -15,6 +15,247 @@ operator, then the number.}
 \item{mode}{Only needed when no boolean expression is given in \code{bool}.
 \code{"is.na"} \code{mode} is for searching for NA values in \code{data}, and
 \code{"isnot.na"} \code{mode} is for searching for not NA in \code{data}.}
+
+\item{...}{
+  Arguments passed on to \code{\link[NMF:aheatmap]{NMF::aheatmap}}
+  \describe{
+    \item{\code{x}}{numeric matrix of the values to be plotted. An
+  \emph{ExpressionSet} object can also be passed, in which case the expression
+  values are plotted (\code{exprs(x)}).}
+    \item{\code{color}}{colour specification for the heatmap.
+  Default to palette '-RdYlBu2:100', i.e. reversed palette
+  'RdYlBu2' (a slight modification of RColorBrewer's
+  palette 'RdYlBu') with 100 colors. Possible values are:
+  \itemize{ \item a character/integer vector of length
+  greater than 1 that is directly used and assumed to
+  contain valid R color specifications. \item a single
+  color/integer (between 0 and 8)/other numeric value that
+  gives the dominant colors. Numeric values are converted
+  into a pallete by \code{rev(sequential_hcl(2, h = x, l =
+  c(50, 95)))}. Other values are concatenated with the grey
+  colour '#F1F1F1'. \item one of RColorBrewer's palette
+  name (see \code{\link[RColorBrewer]{display.brewer.all}})
+  , or one of 'RdYlBu2', 'rainbow', 'heat', 'topo',
+  'terrain', 'cm'. } When the coluor palette is specified
+  with a single value, and is negative or preceded a minus
+  ('-'), the reversed palette is used. The number of breaks
+  can also be specified after a colon (':'). For example,
+  the default colour palette is specified as
+  '-RdYlBu2:100'.}
+    \item{\code{breaks}}{a sequence of numbers that covers the range
+  of values in \code{x} and is one element longer than
+  color vector. Used for mapping values to colors. Useful,
+  if needed to map certain values to certain colors. If
+  value is NA then the breaks are calculated automatically.
+  If \code{breaks} is a single value, then the colour
+  palette is centered on this value.}
+    \item{\code{border_color}}{color of cell borders on heatmap, use
+  NA if no border should be drawn.}
+    \item{\code{cellwidth}}{individual cell width in points. If left
+  as NA, then the values depend on the size of plotting
+  window.}
+    \item{\code{cellheight}}{individual cell height in points. If
+  left as NA, then the values depend on the size of
+  plotting window.}
+    \item{\code{scale}}{character indicating how the values should
+  scaled in either the row direction or the column
+  direction. Note that the scaling is performed after
+  row/column clustering, so that it has no effect on the
+  row/column ordering. Possible values are: \itemize{ \item
+  \code{"row"}: center and standardize each row separately
+  to row Z-scores \item \code{"column"}: center and
+  standardize each column separately to column Z-scores
+  \item \code{"r1"}: scale each row to sum up to one \item
+  \code{"c1"}: scale each column to sum up to one \item
+  \code{"none"}: no scaling }}
+    \item{\code{Rowv}}{clustering specification(s) for the rows. It
+  allows to specify the
+  distance/clustering/ordering/display parameters to be
+  used for the \emph{rows only}. Possible values are:
+  \itemize{ \item \code{TRUE} or \code{NULL} (to be
+  consistent with \code{\link{heatmap}}): compute a
+  dendrogram from hierarchical clustering using the
+  distance and clustering methods \code{distfun} and
+  \code{hclustfun}.
+
+  \item \code{NA}: disable any ordering. In this case, and
+  if not otherwise specified with argument
+  \code{revC=FALSE}, the heatmap shows the input matrix
+  with the rows in their original order, with the first row
+  on top to the last row at the bottom. Note that this
+  differ from the behaviour or \code{\link{heatmap}}, but
+  seemed to be a more sensible choice when vizualizing a
+  matrix without reordering.
+
+  \item an integer vector of length the number of rows of
+  the input matrix (\code{nrow(x)}), that specifies the row
+  order. As in the case \code{Rowv=NA}, the ordered matrix
+  is shown first row on top, last row at the bottom.
+
+  \item a character vector or a list specifying values to
+  use instead of arguments \code{distfun}, \code{hclustfun}
+  and \code{reorderfun} when clustering the rows (see the
+  respective argument descriptions for a list of accepted
+  values). If \code{Rowv} has no names, then the first
+  element is used for \code{distfun}, the second (if
+  present) is used for \code{hclustfun}, and the third (if
+  present) is used for \code{reorderfun}.
+
+  \item a numeric vector of weights, of length the number
+  of rows of the input matrix, used to reorder the
+  internally computed dendrogram \code{d} by
+  \code{reorderfun(d, Rowv)}.
+
+  \item \code{FALSE}: the dendrogram \emph{is} computed
+  using methods \code{distfun}, \code{hclustfun}, and
+  \code{reorderfun} but is not shown.
+
+  \item a single integer that specifies how many subtrees
+  (i.e. clusters) from the computed dendrogram should have
+  their root faded out. This can be used to better
+  highlight the different clusters.
+
+  \item a single double that specifies how much space is
+  used by the computed dendrogram. That is that this value
+  is used in place of \code{treeheight}. }}
+    \item{\code{Colv}}{clustering specification(s) for the columns.
+  It accepts the same values as argument \code{Rowv}
+  (modulo the expected length for vector specifications),
+  and allow specifying the
+  distance/clustering/ordering/display parameters to be
+  used for the \emph{columns only}. \code{Colv} may also be
+  set to \code{"Rowv"}, in which case the dendrogram or
+  ordering specifications applied to the rows are also
+  applied to the columns. Note that this is allowed only
+  for square input matrices, and that the row ordering is
+  in this case by default reversed (\code{revC=TRUE}) to
+  obtain the diagonal in the standard way (from top-left to
+  bottom-right). See argument \code{Rowv} for other
+  possible values.}
+    \item{\code{revC}}{a logical that specify if the \emph{row
+  order} defined by \code{Rowv} should be reversed. This is
+  mainly used to get the rows displayed from top to bottom,
+  which is not the case by default. Its default value is
+  computed at runtime, to suit common situations where
+  natural ordering is a more sensible choice: no or fix
+  ordering of the rows (\code{Rowv=NA} or an integer vector
+  of indexes -- of length > 1), and when a symmetric
+  ordering is requested -- so that the diagonal is shown as
+  expected. An argument in favor of the "odd" default
+  display (bottom to top) is that the row dendrogram is
+  plotted from bottom to top, and reversing its reorder may
+  take a not too long but non negligeable time.}
+    \item{\code{distfun}}{default distance measure used in
+  clustering rows and columns. Possible values are:
+  \itemize{ \item all the distance methods supported by
+  \code{\link{dist}} (e.g. "euclidean" or "maximum").
+
+  \item all correlation methods supported by
+  \code{\link{cor}}, such as \code{"pearson"} or
+  \code{"spearman"}. The pairwise distances between
+  rows/columns are then computed as \code{d <- dist(1 -
+  cor(..., method = distfun))}.
+
+  One may as well use the string "correlation" which is an
+  alias for "pearson".
+
+  \item an object of class \code{dist} such as returned by
+  \code{\link{dist}} or \code{\link{as.dist}}. }}
+    \item{\code{hclustfun}}{default clustering method used to
+  cluster rows and columns. Possible values are: \itemize{
+  \item a method name (a character string) supported by
+  \code{\link{hclust}} (e.g. \code{'average'}). \item an
+  object of class \code{hclust} such as returned by
+  \code{\link{hclust}} \item a dendrogram }}
+    \item{\code{reorderfun}}{default dendrogram reordering function,
+  used to reorder the dendrogram, when either \code{Rowv}
+  or \code{Colv} is a numeric weight vector, or provides or
+  computes a dendrogram. It must take 2 parameters: a
+  dendrogram, and a weight vector.}
+    \item{\code{subsetRow}}{Specification of subsetting the rows
+  before drawing the heatmap. Possible values are:
+  \itemize{ \item an integer vector of length > 1
+  specifying the indexes of the rows to keep; \item a
+  character vector of length > 1 specyfing the names of the
+  rows to keep. These are the original rownames, not the
+  names specified in \code{labRow}. \item a logical vector
+  of length > 1, whose elements are recycled if the vector
+  has not as many elements as rows in \code{x}. } Note that
+  in the case \code{Rowv} is a dendrogram or hclust object,
+  it is first converted into an ordering vector, and cannot
+  be displayed -- and a warning is thrown.}
+    \item{\code{subsetCol}}{Specification of subsetting the columns
+  before drawing the heatmap. It accepts the similar values
+  as \code{subsetRow}. See details above.}
+    \item{\code{txt}}{character matrix of the same size as \code{x},
+  that contains text to display in each cell. \code{NA}
+  values are allowed and are not displayed. See demo for an
+  example.}
+    \item{\code{treeheight}}{how much space (in points) should be
+  used to display dendrograms. If specified as a single
+  value, it is used for both dendrograms. A length-2 vector
+  specifies separate values for the row and column
+  dendrogram respectively. Default value: 50 points.}
+    \item{\code{legend}}{boolean value that determines if a colour
+  ramp for the heatmap's colour palette should be drawn or
+  not. Default is \code{TRUE}.}
+    \item{\code{annCol}}{specifications of column annotation tracks
+  displayed as coloured rows on top of the heatmaps. The
+  annotation tracks are drawn from bottom to top. A single
+  annotation track can be specified as a single vector;
+  multiple tracks are specified as a list, a data frame, or
+  an  \emph{ExpressionSet} object, in which case the 
+  phenotypic data is used (\code{pData(eset)}). Character or 
+  integer vectors are converted and displayed as factors.
+  Unnamed tracks are internally renamed into \code{Xi}, with
+  i being incremented for each unamed track, across both
+  column and row annotation tracks. For each track, if no
+  corresponding colour is specified in argument
+  \code{annColors}, a palette or a ramp is automatically
+  computed and named after the track's name.}
+    \item{\code{annRow}}{specifications of row annotation tracks
+  displayed as coloured columns on the left of the
+  heatmaps. The annotation tracks are drawn from left to
+  right. The same conversion, renaming and colouring rules
+  as for argument \code{annCol} apply.}
+    \item{\code{annColors}}{list for specifying annotation track
+  colors manually. It is possible to define the colors for
+  only some of the annotations. Check examples for
+  details.}
+    \item{\code{annLegend}}{boolean value specifying if the legend
+  for the annotation tracks should be drawn or not. Default
+  is \code{TRUE}.}
+    \item{\code{labRow}}{labels for the rows.}
+    \item{\code{labCol}}{labels for the columns. See description for
+  argument \code{labRow} for a list of the possible
+  values.}
+    \item{\code{fontsize}}{base fontsize for the plot}
+    \item{\code{cexRow}}{fontsize for the rownames, specified as a
+  fraction of argument \code{fontsize}.}
+    \item{\code{cexCol}}{fontsize for the colnames, specified as a
+  fraction of argument \code{fontsize}.}
+    \item{\code{main}}{Main title as a character string or a grob.}
+    \item{\code{sub}}{Subtitle as a character string or a grob.}
+    \item{\code{info}}{(experimental) Extra information as a
+  character vector or a grob.  If \code{info=TRUE},
+  information about the clustering methods is displayed at
+  the bottom of the plot.}
+    \item{\code{filename}}{file path ending where to save the
+  picture. Currently following formats are supported: png,
+  pdf, tiff, bmp, jpeg. Even if the plot does not fit into
+  the plotting window, the file size is calculated so that
+  the plot would fit there, unless specified otherwise.}
+    \item{\code{width}}{manual option for determining the output
+  file width in}
+    \item{\code{height}}{manual option for determining the output
+  file height in inches.}
+    \item{\code{verbose}}{if \code{TRUE} then verbose messages are
+  displayed and the borders of some viewports are
+  highlighted. It is entended for debugging purposes.}
+    \item{\code{gp}}{graphical parameters for the text used in plot.
+  Parameters passed to \code{\link{grid.text}}, see
+  \code{\link{gpar}}.}
+  }}
 }
 \value{
 A plot generated by \code{\link[NMF]{aheatmap}} showing in red the
