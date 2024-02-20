@@ -22,4 +22,7 @@ and \code{NA} if applicable.
 Takes a \code{data.frame} and classifies each \code{numeric}
 variable into two sample groups: presence (unequal to zero) and absence
 (equal to zero).
+
+Originally, this function was created as a useful precedent to
+\code{\link{multiple.t.test}} function.
 }

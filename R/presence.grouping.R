@@ -5,6 +5,9 @@
 #' variable into two sample groups: presence (unequal to zero) and absence
 #' (equal to zero).
 #'
+#' Originally, this function was created as a useful precedent to
+#' \code{\link{multiple.t.test}} function.
+#'
 #' @param data
 #' \code{data.frame} with samples in rows and variables in columns.
 #'
