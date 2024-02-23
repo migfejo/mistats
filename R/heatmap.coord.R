@@ -20,7 +20,7 @@
 heatmap.coord <- function(data, bool = NULL, mode = "isnot.na", value = FALSE, ...) {
   lo <- mistats::which.coord(data = data, bool = bool, mode = mode)  # lo -> list object
 
-  if (is.null(lo)) {NULL; cat("No results found. No plot generated.\n")}
+  if (is.null(lo)) {cat("No results found. No plot generated.\n"); NULL}
   else {
     df <- data.frame()
 
@@ -28,9 +28,15 @@ heatmap.coord <- function(data, bool = NULL, mode = "isnot.na", value = FALSE, .
       mtext <- data.frame()
       for (i in 1:nrow(lo)) {
         df[lo[i, "rowname"], lo[i, "colname"]] <- lo[i, "value"]
-        mtext[lo[i, "rowname"], lo[i, "colname"]] <- lo[i, "value"]
+        mtext[lo[i, "rowname"], lo[i, "colname"]] <- signif(lo[i, "value"],
+                                                            digits = 5)
       }
-      NMF::aheatmap(df, txt = mtext, Rowv = NA, Colv = NA, ...)
+      if (length(unique(unlist(c(df)))) == 1) {
+        NMF::aheatmap(df, txt = mtext, Rowv = NA, Colv = NA, breaks =2, ...)
+      }
+      else {
+        NMF::aheatmap(df, txt = mtext, Rowv = NA, Colv = NA, ...)
+      }
     }
 
     else {
@@ -38,8 +44,11 @@ heatmap.coord <- function(data, bool = NULL, mode = "isnot.na", value = FALSE, .
         df[lo[i, "rowname"], lo[i, "colname"]] <- 1
       }
       df[is.na(df)] <- 0
-      NMF::aheatmap(df, Rowv = NA, Colv = NA, ...)
+
+      if (length(unique(unlist(c(df)))) == 1) {
+        NMF::aheatmap(df, Rowv = NA, Colv = NA, breaks = 2, ...)
+      }
+      else {NMF::aheatmap(df, Rowv = NA, Colv = NA, ...)}
     }
   }
 }
-

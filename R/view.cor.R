@@ -7,6 +7,9 @@
 #' respectively, to be compared each other. Variables must be in columns.
 #' Observations must be in rows, and in the same order in both sets.
 #'
+#' If only \code{x} is given as a matrix or dataframe, correlations of its
+#' columns will be calculated.
+#'
 #' @param threshold Minimum threshold value for filtering correlation results.
 #' It applies to positive and negative correlations.
 #'
@@ -17,8 +20,15 @@
 #'
 #' @export view.cor
 #'
-view.cor <- function(x, y, threshold = 0.5, method = "pearson"){
+view.cor <- function(x, y = NULL, threshold = 0.5, method = "pearson"){
   corrs <- stats::cor(x, y, method = method)
+  if (is.null(y) | identical(x, y)) {  # If corrs is square matrix, make upper triangle zero
+    for (r in 1:nrow(corrs)) {
+      for (c in 1:ncol(corrs)) {
+        if (c >= r) {corrs[r, c] <- 0}
+      }
+    }
+  }
   indexes <- which(abs(corrs) >= threshold)
   res <- c()
   resnames <- c()
@@ -35,3 +45,4 @@ view.cor <- function(x, y, threshold = 0.5, method = "pearson"){
   names(res) <- resnames
   res
 }
+
