@@ -4,7 +4,14 @@
 \alias{heatmap.coord}
 \title{Logical Dataframe Coordinates Heatmap}
 \usage{
-heatmap.coord(data, bool = NULL, mode = "isnot.na", value = FALSE, ...)
+heatmap.coord(
+  data,
+  bool = NULL,
+  mode = "isnot.na",
+  value = FALSE,
+  as.table = FALSE,
+  ...
+)
 }
 \arguments{
 \item{data}{\code{data.frame} in whose coordinates are being looking for.}
@@ -18,6 +25,8 @@ operator, then the number.}
 
 \item{value}{If TRUE, original values are represented in the heatmap. If FALSE (default),
 matched cells are set to 1, and unmatched cells to 0.}
+
+\item{as.table}{If TRUE, function returns the \code{data.frame} which the plot is based on.}
 
 \item{...}{
   Arguments passed on to \code{\link[NMF:aheatmap]{NMF::aheatmap}}
