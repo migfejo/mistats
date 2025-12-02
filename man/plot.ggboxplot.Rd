@@ -19,7 +19,7 @@ In case of dichotomic variable, a t test will be performed.}
 Variable chosen for divide boxplots through different categories.}
 }
 \value{
-A \code{\link{ggplot2}} object representing boxplots of different groups.
+A \pkg{ggplot2} object representing boxplots of different groups.
 A t test p.value is shown when group number is 2.
 }
 \description{

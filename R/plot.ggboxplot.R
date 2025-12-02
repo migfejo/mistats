@@ -12,7 +12,7 @@
 #' \code{character} string, optional.
 #' Variable chosen for divide boxplots through different categories.
 #'
-#' @return A \code{\link{ggplot2}} object representing boxplots of different groups.
+#' @return A \pkg{ggplot2} object representing boxplots of different groups.
 #' A t test p.value is shown when group number is 2.
 #'
 #' @importFrom ggplot2 ggplot aes geom_boxplot geom_jitter xlab ylab theme element_text ggtitle facet_wrap
