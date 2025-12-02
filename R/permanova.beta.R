@@ -59,7 +59,7 @@ permanova.beta <- function(physeq, method = "bray", variables, permutations = 99
                                    paste(variables, collapse = " + "))),
           data = data.frame(phyloseq::sample_data(physeq),
                             chek.names = FALSE),
-          permutations = 999,
+          permutations = permutations,
           by = "margin")[variables[1], "Pr(>F)"]
         }
       )
